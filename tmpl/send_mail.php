@@ -1,4 +1,4 @@
-<?php
+<?php 
 require_once("phpmailer/class.phpmailer.php");
 
 $email = $_POST["email"];
@@ -57,7 +57,7 @@ try {
 	define('GUSER', 'ouvidoria.ime@gmail.com');	// <-- Insira aqui o seu GMail
 	define('GPWD', 'webmaster123');		// <-- Insira aqui a senha do seu GMail
 	$corpo 	= "Clique no link abaixo para validar seu e-mail e mandar uma mensagem para a ouvidoria.\n";
-	$corpo = $corpo.JURI::root()."modules/mod_validation/verify.php";
+	$corpo = $corpo.$juri_root."modules/mod_validation/verify.php";
 
 	function smtpmailer($para, $de, $de_nome, $assunto, $corpo) { 
 		global $error;

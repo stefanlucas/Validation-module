@@ -1,12 +1,12 @@
 <?php defined('_JEXEC') or die; 
 
 //First get the current document object
+	$juri_root = JURI::root();
 	$doc = &JFactory::getDocument();
 	
 	//adds a linked style sheet
 	$doc->addStyleSheet(JURI::root().'modules/mod_validation/css/style.css');
 	$doc->addScript(JURI::root().'modules/mod_validation/js/jquery-1.3.2.js');
-
 ?>
 
 <script type="text/javascript" language="javascript">
@@ -50,7 +50,7 @@ $(function($) {
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <div id="box_cadastro">
-	<form id="formulario" action="<?php echo JURI::root().'modules/mod_validation/send_mail.php';?>" method="post" >   
+	<form id="formulario" action="<?php echo JURI::root().'modules/mod_validation/tmpl/send_mail.php';?>" method="post" >   
 	<p>Caso seja a primeira vez que esteja usando este e-mail, enviaremos um link para validá-lo.</p>
 	<div id="grupo">
 		<label>E-mail:</label>
