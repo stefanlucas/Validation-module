@@ -14,10 +14,10 @@
 			<filename>tmpl/send_link.php</filename>
 			<filename>tmpl/verify.php></filename>
             <filename>tmpl/default.php</filename>
-            <filename module="mod_validation">mod_validation.php</filename>
-			<filename>loader.gif</filename>                
+            <filename>tmpl/loader.gif</filename>  
+            <filename module="mod_validation">mod_validation.php</filename>              
 			<folder>css</folder> 
 			<folder>js</folder>
-            <folder>phpmailer</folder>           
+            <folder>tmpl/phpmailer</folder>           
         </files>
 </extension> 

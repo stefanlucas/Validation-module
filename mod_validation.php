@@ -10,15 +10,11 @@ $doc->addScript(JURI::root().'modules/mod_validation/js/jquery-1.3.2.js');
 $jinput = JFactory::getApplication()->input;
 $action = $jinput->get('action', null);
 
-switch($action) {
-	case 'send_link':
-		require(JModuleHelper::getLayoutPath('mod_validation', 'send_link'));
-		break;
-
-	case 'verify':
-		require(JModuleHelper::getLayoutPath('mod_validation', 'verify'));
-	default:
-		require(JModuleHelper::getLayoutPath('mod_validation', 'default'));
+if ($action) {
+	require(JModuleHelper::getLayoutPath('mod_validation', $action));	
+}
+else {
+	require(JModuleHelper::getLayoutPath('mod_validation', 'default'));
 }
 
 ?>
