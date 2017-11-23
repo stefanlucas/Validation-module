@@ -60,7 +60,7 @@ try {
 	define('GUSER', 'ouvidoria.ime@gmail.com');	// <-- Insira aqui o seu GMail
 	define('GPWD', 'webmaster123');		// <-- Insira aqui a senha do seu GMail
 	$corpo 	= "Clique no link abaixo para validar seu e-mail e mandar uma mensagem para a ouvidoria.\n";
-	$corpo = $corpo.$juri_root."modules/mod_validation/verify.php";
+	$corpo = $corpo.$doc->getBase()."&action=verify.php&email='$email'&hash='$hash'";
 
 	function smtpmailer($para, $de, $de_nome, $assunto, $corpo) { 
 		global $error;
