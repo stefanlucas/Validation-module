@@ -44,7 +44,7 @@ $(function($) {
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <div id="box_cadastro">
-	<form id="formulario" action="index.php" method="post" >   
+	<form id="formulario" action="<?php $doc->getBase(); ?>" method="post" >   
 	<p>Caso seja a primeira vez que esteja usando este e-mail, enviaremos um link para validá-lo.</p>
 	<div id="grupo">
 		<label>E-mail:</label>
