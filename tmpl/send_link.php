@@ -15,7 +15,7 @@ $dbname = "galois";
 $table_name = "j456_ouvidoria";
 
 if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-	$secret = '6Le64DkUAAAAAOsaWGiEgnDG7yts75uTTbE6IS60';
+	$secret = '6LfGDDoUAAAAALAXtCRA-cDsc9wEKMPNU2_1QK4J';
 	$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
 	$responseData = json_decode($verifyResponse);
 	if (!$responseData->success) {
