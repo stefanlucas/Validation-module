@@ -16,7 +16,7 @@ $(function($) {
 
 
 		// Exibe mensagem de carregamento
-		$("#obs").html("<img src='<?php echo JURI::root().'modules/mod_validation/loader.gif'; ?>' alt='Enviando' />");
+		$("#obs").html("<img src='<?php echo JURI::root().'modules/mod_validation/tmpl/loader.gif'; ?>' alt='Enviando' />");
 		// Fazemos a requisão ajax com o arquivo envia.php e enviamos os valores de cada campo através do método POST
 		$.post('<?php echo JURI::root().'modules/mod_validation/contato.php';?>', {nome: nome, email: email, mensagem: mensagem}, function(resposta) {	
 				// Quando terminada a requisição
@@ -44,7 +44,7 @@ $(function($) {
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <div id="box_cadastro">
-	<form id="formulario" action="<?php $doc->getBase(); ?>" method="post" >   
+	<form id="formulario" action="<?php echo JUri::getInstance(); ?>" method="post" >   
 	<p>Caso seja a primeira vez que esteja usando este e-mail, enviaremos um link para validá-lo.</p>
 	<div id="grupo">
 		<label>E-mail:</label>

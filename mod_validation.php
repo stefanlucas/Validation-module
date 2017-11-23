@@ -15,6 +15,8 @@ switch($action) {
 		require(JModuleHelper::getLayoutPath('mod_validation', 'send_link'));
 		break;
 
+	case 'verify':
+		require(JModuleHelper::getLayoutPath('mod_validation', 'verify'));
 	default:
 		require(JModuleHelper::getLayoutPath('mod_validation', 'default'));
 }

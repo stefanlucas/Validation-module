@@ -60,7 +60,7 @@ try {
 	define('GUSER', 'ouvidoria.ime@gmail.com');	// <-- Insira aqui o seu GMail
 	define('GPWD', 'webmaster123');		// <-- Insira aqui a senha do seu GMail
 	$corpo 	= "Clique no link abaixo para validar seu e-mail e mandar uma mensagem para a ouvidoria.\n";
-	$corpo = $corpo.$doc->getBase()."&action=verify.php&email='$email'&hash='$hash'";
+	$corpo = $corpo.JUri::getInstance()."&action=verify&email=$email&hash=$hash";
 
 	function smtpmailer($para, $de, $de_nome, $assunto, $corpo) { 
 		global $error;
@@ -85,7 +85,7 @@ try {
 	}
 
 	if (smtpmailer($email, GUSER, 'Ouvidoria IME-USP', '	Link de validação de e-mail', $corpo)) {
-		echo "Link de validação enviado com sucesso! Verifique sua caixa de entrada";
+		echo "Send ok";
 		die();
 	}
 	if (!empty($error)) echo $error;
