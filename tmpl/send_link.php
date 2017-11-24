@@ -2,12 +2,12 @@
 defined('_JEXEC') or die('Direct Access to this location is not
 allowed.');
 
-require_once("phpmailer/class.phpmailer.php");
+require('phpmailer/smtpmailer.php');
 
 $email = $_POST["email"];
 $hash = md5(rand(0,1000));
 
-// Conectando banco de dados
+// banco de dados
 $servername = "localhost";
 $username = "root";
 $password = "webmaster123";
@@ -50,51 +50,25 @@ try {
     	}
     }
     else {
-    	$sql = "INSERT INTO j456_ouvidoria (email, hash, expiration_date)
+    	$sql = "INSERT INTO $table_name (email, hash, expiration_date)
     	VALUES ('$email', '$hash', (NOW() + INTERVAL 1 DAY))";
     }
-    
-    // use exec() because no results are returned
-   	$conn->exec($sql);
-
-	define('GUSER', 'ouvidoria.ime@gmail.com');	// <-- Insira aqui o seu GMail
-	define('GPWD', 'webmaster123');		// <-- Insira aqui a senha do seu GMail
-	$corpo 	= "Clique no link abaixo para validar seu e-mail e mandar uma mensagem para a ouvidoria.\n";
-	$corpo = $corpo.JUri::getInstance()."&action=verify&email=$email&hash=$hash";
-
-	function smtpmailer($para, $de, $de_nome, $assunto, $corpo) { 
-		global $error;
-		$mail = new PHPMailer();
-		$mail->CharSet = 'UTF-8';
-		$mail->IsSMTP();		// Ativar SMTP
-		$mail->SMTPDebug = 0;		// Debugar: 1 = erros e mensagens, 2 = mensagens apenas
-		$mail->SMTPAuth = true;		// Autenticação ativada
-		$mail->SMTPSecure = 'tls';	// TLS REQUERIDO pelo GMail
-		$mail->Host = 'smtp.gmail.com';	// SMTP utilizado
-		$mail->Port = 587;  		// A porta 587 deverá estar aberta em seu servidor
-		$mail->Username = GUSER;
-		$mail->Password = GPWD;
-		$mail->SetFrom($de, $de_nome);
-		$mail->Subject = $assunto;
-		$mail->Body = $corpo;
-		$mail->AddAddress($para);
-		if(!$mail->Send()) {
-			$error = 'Mail error: '.$mail->ErrorInfo; 
-			return false;
-		} else return true;
-	}
-
-	if (smtpmailer($email, GUSER, 'Ouvidoria IME-USP', '	Link de validação de e-mail', $corpo)) {
-		echo "Send ok";
-		die();
-	}
-	if (!empty($error)) echo $error;
+    $conn->exec($sql);
 }
 catch(PDOException $e)
-{
     echo $sql . "<br>" . $e->getMessage();
+
+/* Construindo a mensagem*/
+$remetente = 'ouvidoria.ime@gmail.com';
+$senha = 'webmaster123';
+$corpo 	= "Clique no link abaixo para validar seu e-mail e mandar uma mensagem para a ouvidoria.\n";
+$corpo = $corpo.JUri::getInstance()."&action=verify&email=$email&hash=$hash";
+
+if (smtpmailer($email, $remetente, 'Ouvidoria IME-USP', $senha, 'Link de validação de e-mail', $corpo)) {
+	echo "Send ok";
+	die();
 }
-
-$conn = null;
-
+else {
+	echo "Erro ao enviar a mensagem";
+}
 ?>
