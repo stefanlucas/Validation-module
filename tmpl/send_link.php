@@ -16,11 +16,10 @@ $password = $app->getCfg('password');
 $dbname = $app->getCfg('db');
 $table_name = $app->getCfg('dbprefix')."ouvidoria";
 
-/*if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
 	$secret = '6LdCMDoUAAAAAMq3O07L5exZhyD0lSYRY4corAt3';
 	$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
 	$responseData = json_decode($verifyResponse);
-	dump($responseData);
 	if (!$responseData->success) {
 		$error = 'A verificação de recapcha falhou, tente novamente';
 		require('default.php');
@@ -31,7 +30,7 @@ else {
 	$error = 'Clique na caixa de recaptcha';
 	require('default.php');
 	return;
-}*/
+}
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	$error = 'E-mail inválido, digite novamente';
 	require('default.php');
