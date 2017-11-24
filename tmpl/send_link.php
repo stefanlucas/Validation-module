@@ -8,11 +8,13 @@ $email = $_POST["email"];
 $hash = md5(rand(0,1000));
 
 // banco de dados
-$servername = "localhost";
-$username = "root";
-$password = "webmaster123";
-$dbname = "galois";
-$table_name = "j456_ouvidoria";
+$app = JFactory::getApplication(); 
+$dbtype = $app->getCfg('dbtype');
+$servername = $app->getCfg('host');
+$username = $app->getCfg('user');
+$password = $app->getCfg('password');
+$dbname = $app->getCfg('db');
+$table_name = $app->getCfg('dbprefix')."ouvidoria";
 
 /*if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
 	$secret = '6LdCMDoUAAAAAMq3O07L5exZhyD0lSYRY4corAt3';
@@ -37,7 +39,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("$dbtype:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "SELECT email, active FROM $table_name WHERE email = '$email'";
@@ -61,6 +63,7 @@ try {
 catch(PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();
 }
+
 /* Construindo a mensagem*/
 $remetente = 'ouvidoria.ime@gmail.com';
 $senha = 'webmaster123';

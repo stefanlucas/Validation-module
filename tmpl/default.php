@@ -58,7 +58,7 @@ $(function($) {
 	<div id="grupo" style="margin-bottom: 50px">
 	<div class="g-recaptcha" data-sitekey="6LdCMDoUAAAAAHMT3uyda5FQV-GUXFDhA-J74fNh"></div>	
 	</div>
-	<input type="hidden" name="action" value="send_link" />
+	<input type="hidden" name="action" value="send_link" />	
 	<div id="grupo">							
 		<div id="bt_envia"><input type="submit" value="ENVIAR" class="btn" /></div>	
 	</div>	        

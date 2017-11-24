@@ -1,17 +1,19 @@
 <?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "webmaster123";
-	$dbname = "galois";
-	$table = "j456_ouvidoria";
+	$app = JFactory::getApplication();
+	$dbtype = $app->getCfg('dbtype');
+	$servername = $app->getCfg('host');
+	$username = $app->getCfg('user');
+	$password = $app->getCfg('password');
+	$dbname = $app->getCfg('db');
+	$table = $app->getCfg('dbprefix')."ouvidoria";
 
 	if (isset($_GET['email']) && !empty($_GET['email']) && isset($_GET['hash']) && !empty($_GET['hash'])) {
 		try{
-			$db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+			$db = new PDO("$dbtype:host=$servername;dbname=$dbname", $username, $password);
 	    	// set the PDO error mode to exception
-	    	$email = $_GET['email'];
-	    	$hash = $_GET['hash'];
-	    	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	    		$email = $_GET['email'];
+	    		$hash = $_GET['hash'];
+	    		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql = "SELECT * FROM $table WHERE email = '$email' AND hash = '$hash'";
 			$user = $db->query($sql)->fetch(PDO::FETCH_ASSOC);
 			if ($user != false) {
