@@ -46,7 +46,7 @@ $(function($) {
 });
 </script>
 
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src='https://www.google.com/recaptcha/api.js?hl=pt-BR'></script>
 <div id="box_cadastro">
 	<form id="formulario" action="<?php echo JUri::getInstance(); ?>" method="post" >   
 	<p>Caso seja a primeira vez que esteja usando este e-mail, enviaremos um link para validá-lo.</p>
