@@ -48,7 +48,7 @@ $(function($) {
 	<p>Caso seja a primeira vez que esteja usando este e-mail, enviaremos um link para validá-lo.</p>
 	<div id="grupo">
 		<label>E-mail:</label>
-		<input type="text" name="email" id="email" class="text"  />
+		<input type="text" name="email" id="email" class="text" value="<?php echo $email?>"/>
 	</div>		
 	<?php
 		if (isset($error)) {
