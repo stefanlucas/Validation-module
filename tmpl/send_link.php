@@ -2,7 +2,7 @@
 defined('_JEXEC') or die('Direct Access to this location is not
 allowed.');
 
-require('phpmailer/smtpmailer.php');
+require_once('phpmailer/smtpmailer.php');
 
 $email = $_POST["email"];
 $hash = md5(rand(0,1000));
@@ -14,10 +14,11 @@ $password = "webmaster123";
 $dbname = "galois";
 $table_name = "j456_ouvidoria";
 
-if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-	$secret = '6LfGDDoUAAAAALAXtCRA-cDsc9wEKMPNU2_1QK4J';
+/*if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+	$secret = '6LdCMDoUAAAAAMq3O07L5exZhyD0lSYRY4corAt3';
 	$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
 	$responseData = json_decode($verifyResponse);
+	dump($responseData);
 	if (!$responseData->success) {
 		echo 'A verificação de recapcha falhou, tente novamente';
 		die();
@@ -26,7 +27,7 @@ if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'
 else {
 	echo 'Clique na caixa de recaptcha';
 	die();
-}
+}*/
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	echo 'E-mail inválido, digite novamente';
 	die();
@@ -55,18 +56,18 @@ try {
     }
     $conn->exec($sql);
 }
-catch(PDOException $e)
+catch(PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();
-
+}
 /* Construindo a mensagem*/
 $remetente = 'ouvidoria.ime@gmail.com';
 $senha = 'webmaster123';
 $corpo 	= "Clique no link abaixo para validar seu e-mail e mandar uma mensagem para a ouvidoria.\n";
 $corpo = $corpo.JUri::getInstance()."&action=verify&email=$email&hash=$hash";
 
-if (smtpmailer($email, $remetente, 'Ouvidoria IME-USP', $senha, 'Link de validação de e-mail', $corpo)) {
+/*destinatario, remetente, senha, nome do remetente, assunto, corpo*/
+if (smtpmailer($email, $remetente, $senha, 'Ouvidoria IME-USP', 'Link de validação de e-mail', $corpo)) {
 	echo "Send ok";
-	die();
 }
 else {
 	echo "Erro ao enviar a mensagem";

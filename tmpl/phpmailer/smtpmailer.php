@@ -18,6 +18,7 @@ function smtpmailer($destinatario, $remetente, $senha, $remetente_nome, $assunto
 	$mail->Body = $corpo;
 	$mail->AddAddress($destinatario);
 	if(!$mail->Send()) {
+		echo 'Mailer Error: ' . $mail->ErrorInfo;
 		return false;
 	} 
 	else return true;
