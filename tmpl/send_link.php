@@ -20,17 +20,20 @@ $table_name = "j456_ouvidoria";
 	$responseData = json_decode($verifyResponse);
 	dump($responseData);
 	if (!$responseData->success) {
-		echo 'A verificação de recapcha falhou, tente novamente';
-		die();
+		$error = 'A verificação de recapcha falhou, tente novamente';
+		require('default.php');
+		return;
 	}
 }
 else {
-	echo 'Clique na caixa de recaptcha';
-	die();
+	$error = 'Clique na caixa de recaptcha';
+	require('default.php');
+	return;
 }*/
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	echo 'E-mail inválido, digite novamente';
-	die();
+	$error = 'E-mail inválido, digite novamente';
+	require('default.php');
+	return;
 }
 
 try {
@@ -42,9 +45,8 @@ try {
     
     if ($user['email'] == $email) {
     	if ($user['active']) {
-   		echo "mostra message_form";
-   		//include 'message_form.php';
-    		die();
+   		require('message_form.php');
+    		return;
     	}
     	else {
     		$sql = "UPDATE $table_name SET hash = '$hash', expiration_date=(NOW() + INTERVAL 1 DAY) WHERE email = '$email'";
@@ -66,10 +68,10 @@ $corpo 	= "Clique no link abaixo para validar seu e-mail e mandar uma mensagem p
 $corpo = $corpo.JUri::getInstance()."&action=verify&email=$email&hash=$hash";
 
 /*destinatario, remetente, senha, nome do remetente, assunto, corpo*/
-if (smtpmailer($email, $remetente, $senha, 'Ouvidoria IME-USP', 'Link de validação de e-mail', $corpo)) {
-	echo "Send ok";
+if (smtpmailer($email, $remetente, $senha, 'Ouvidoria IME', 'Link de validação de e-mail', $corpo)) {
+	echo "Link de validação enviado com sucesso, verifique a sua caixa de entrada";
 }
 else {
-	echo "Erro ao enviar a mensagem";
+	$error = "Erro ao enviar a mensagem";
 }
 ?>

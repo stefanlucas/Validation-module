@@ -2,7 +2,6 @@
 require_once("class.phpmailer.php");
 
 function smtpmailer($destinatario, $remetente, $senha, $remetente_nome, $assunto, $corpo) { 
-	global $error;
 	$mail = new PHPMailer();
 	$mail->CharSet = 'UTF-8';
 	$mail->IsSMTP();		// Ativar SMTP
@@ -11,8 +10,8 @@ function smtpmailer($destinatario, $remetente, $senha, $remetente_nome, $assunto
 	$mail->SMTPSecure = 'tls';	// TLS REQUERIDO pelo GMail
 	$mail->Host = 'smtp.gmail.com';	// SMTP utilizado
 	$mail->Port = 587;  		// A porta 587 deverá estar aberta em seu servidor
-	$mail->Username = $remetente;
-	$mail->Password = $senha;
+	$mail->Username = 'ouvidoria.ime@gmail.com';
+	$mail->Password = 'webmaster123';
 	$mail->SetFrom($remetente, $remetente_nome);
 	$mail->Subject = $assunto;
 	$mail->Body = $corpo;
