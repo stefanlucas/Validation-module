@@ -11,8 +11,10 @@
 		<!--Aqui vai a descricao do diretorio site e seus arquivos-->
         <files folder="site">
             <filename>index.html</filename>
-			<filename>tmpl/send_link.php</filename>
-			<filename>tmpl/verify.php></filename>
+		<filename>tmpl/send_link.php</filename>
+		<filename>tmpl/verify.php</filename>
+		<filename>tmpl/message_form.php</filename>
+		<filename>tmpl/send_mail.php</filename>
             <filename>tmpl/default.php</filename>
             <filename>tmpl/loader.gif</filename>  
             <filename module="mod_validation">mod_validation.php</filename>              
