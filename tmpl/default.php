@@ -1,6 +1,10 @@
 <?php
 defined('_JEXEC') or die('Direct Access to this location is not
 allowed.');
+
+if (!isset($email)) {
+	$email = "";
+}
 ?>
 
 <script type="text/javascript" language="javascript">
