@@ -17,18 +17,17 @@ if ($mensagem == "") {
 $email_ouvidoria = 'ouvidoria.ime@gmail.com';
 $assunto_ouvidoria = "Ouvidoria IME-USP | Novo contato ";
 $assunto_usuario = "Ouvidoria IME-USP | Retorno automático";
-$corpo_ouvidoria = 
-	"Nome............: $nome\n".
-	"E-mail..........: $email_ouvidorial\n".
+$corpo_ouvidoria = "Nome............: $nome\n".
+	"E-mail..........: $email\n".
 	"Mensagem........: $mensagem\n".
 	"Data............: $data\n".
 	"Hora............: $hora\n";
 if ($nome == "") {
 	$nome = "amigo(a)";
 }
-$corpo_usuario = "Olá, $nome.\n Obrigado pela mensagem, em breve entraremos em contato\n";	
+$corpo_usuario = "Olá, $nome.\nObrigado pela mensagem, em breve entraremos em contato.\n";	
 
-if (smtpmailer($email_ouvidoria, $email, $assunto_ouvidoria, $corpo)) {
+if (smtpmailer($email_ouvidoria, $email, $assunto_ouvidoria, $corpo_ouvidoria)) {
 	smtpmailer($email, 'norepy@ime.usp.br', $assunto_usuario, $corpo_usuario);
 	echo 'Mensagem enviada com sucesso!';
 }
