@@ -64,13 +64,11 @@ catch(PDOException $e) {
 }
 
 /* Construindo a mensagem*/
-$remetente = 'ouvidoria.ime@gmail.com';
-$senha = 'webmaster123';
 $corpo 	= "Clique no link abaixo para validar seu e-mail e mandar uma mensagem para a ouvidoria.\n";
 $corpo = $corpo.JUri::getInstance()."&action=verify&email=$email&hash=$hash";
 
-/*destinatario, remetente, senha, nome do remetente, assunto, corpo*/
-if (smtpmailer($email, $remetente, $senha, 'Ouvidoria IME', 'Link de validação de e-mail', $corpo)) {
+/*destinatario, remetente, assunto, corpo*/
+if (smtpmailer($email, 'noreply@ime.usp.br', 'Link de validação de e-mail', $corpo)) {
 	echo "Link de validação enviado com sucesso, verifique a sua caixa de entrada";
 }
 else {
