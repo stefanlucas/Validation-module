@@ -31,6 +31,11 @@ $(function($) {
   <?php
       echo '<input type="hidden" name="email" value="'.$email.'">'
   ?>
+  <?php
+    if (isset($error)) {
+      echo '<span style="color:red">'.$error.'</span><br>';
+    }
+  ?>  
   <input type="hidden" name="action" value="send_mail" />
   <div id="grupo">              
     <div id="obs">*Campo obrigatório.</div> 

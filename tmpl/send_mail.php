@@ -9,7 +9,9 @@ $email = $_POST["email"];
 $mensagem = $_POST["mensagem"];	
 
 if ($mensagem == "") {
-	$message = "Verifique o campo obrigatório";
+	$error = "O campo da mensagem não pode estar vazio";
+	require('message_form.php');
+	return;
 }
 
 $email_ouvidoria = 'ouvidoria.ime@gmail.com';
