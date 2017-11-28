@@ -8,6 +8,10 @@ $nome = $_POST["nome"];
 $email = $_POST["email"];
 $mensagem = $_POST["mensagem"];	
 
+if ($mensagem == "") {
+	$message = "Verifique o campo obrigatório";
+}
+
 $email_ouvidoria = 'ouvidoria.ime@gmail.com';
 $assunto_ouvidoria = "Ouvidoria IME-USP | Novo contato ";
 $assunto_usuario = "Ouvidoria IME-USP | Retorno automático";
